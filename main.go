@@ -5,15 +5,15 @@ import (
 	"net/http"
 )
 
-func main() {
-    store := StubPlayerStore{
-        scores: map[string]int{
-            "Pepper": 20,
-            "Floyd": 10,
-        },
-    }
+type InMemoryPlayerStore struct{}
 
-    server := &PlayerServer{&store}
+func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
+    return 123
+}
+
+func main() {
+
+    server := &PlayerServer{&InMemoryPlayerStore{}}
 
 	// prepares your PlayerServer function to be used as an HTTP handler, and: starts a server on port that sends incoming requests to that handler.
     log.Fatal(http.ListenAndServe(":5000", server))
