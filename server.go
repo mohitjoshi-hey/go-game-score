@@ -4,7 +4,13 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"github.com/mohitjoshi-hey/stlgo/algo/math"
 )
+
+type Player struct {
+	Name string
+	Wins int
+}
 
 type PlayerStore interface {
 	GetPlayerScore(name string) int
@@ -60,4 +66,16 @@ func (p *PlayerServer) playersHandler(w http.ResponseWriter, r *http.Request){
 	case http.MethodGet:
 		p.showScore(w, player)
 	}
+
+	//only for battodi
+	i := 2;
+	if i == 3 {
+		_ = findMax();
+	}
+}
+
+//batttodi
+func findMax() int {
+	a := math.Max(1, 23, 4);
+	return a;
 }

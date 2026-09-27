@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -124,6 +125,16 @@ func TestLeague(t *testing.T) {
 		response := httptest.NewRecorder()
 
 		server.ServeHTTP(response, request)
+
+		var got []Player
+
+		err := json.NewDecoder(response.Body).Decode(&got)
+		// "json.NewDecoder(response.Body)" means: "Take the data coming from response.Body and create something capable of reading JSON from it."
+		// Decode(&got): "Read the JSON from the response and convert it into the Go variable got."
+
+		if err != nil {
+			t.Fatalf("unable to parse reponse from server %q into slice of Player, '%v'", response.Body, err)
+		}
 
 		assertStatus(t, response.Code, http.StatusOK)
 	})
