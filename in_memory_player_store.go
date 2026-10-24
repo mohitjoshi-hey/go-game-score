@@ -9,7 +9,7 @@ type InMemoryPlayerStore struct {
 }
 
 func (i *InMemoryPlayerStore) RecordWin(name string) { // Increase the player's score when u get it in the POST request
-	i.store[name]++;
+	i.store[name]++
 }
 
 func (i *InMemoryPlayerStore) GetPlayerScore(name string) int { // Show the player's score when u want to see it's score through the GET request
@@ -17,7 +17,7 @@ func (i *InMemoryPlayerStore) GetPlayerScore(name string) int { // Show the play
 }
 
 func (i *InMemoryPlayerStore) GetLeague() []Player {
-	var league []Player
+	league := []Player{}
 	for name, wins := range i.store {
 		league = append(league, Player{name, wins})
 	}
