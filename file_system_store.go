@@ -1,4 +1,4 @@
-package main
+package poker
 
 import (
 	"encoding/json"
@@ -56,7 +56,7 @@ func (f *FileSystemPlayerStore) RecordWin(name string) {
 
 func NewFileSystemPlayerStore(file *os.File) (*FileSystemPlayerStore, error) {
 	err := initialisePlayerDBFile(file)
-	
+
 	if err != nil {
 		return nil, fmt.Errorf("problem getting file info from file %s, %v", file.Name(), err)
 	}
@@ -88,4 +88,30 @@ func initialisePlayerDBFile(file *os.File) error {
 	}
 
 	return nil
+}
+
+func FileSystemPlayerStoreFromFile(path string) (*FileSystemPlayerStore, func(), error) {
+	db, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE, 0666)
+
+	// We create a file for our database.
+
+	// The 2nd argument to os.OpenFile lets you define the permissions for opening the file, in our case O_RDWR means we want to read and write and os.O_CREATE means create the file if it doesn't exist.
+
+	// The 3rd argument means sets permissions for the file, in our case, all users can read and write the file.
+
+	if err != nil {
+		return nil, nil, fmt.Errorf("problem opening %s %v", path, err)
+	}
+
+	closeFunc := func() {
+		db.Close()
+	}
+
+	store, err := NewFileSystemPlayerStore(db)
+
+	if err != nil {
+		return nil, nil, fmt.Errorf("problem creating file system player store, %v ", err)
+	}
+
+	return store, closeFunc, nil
 }
