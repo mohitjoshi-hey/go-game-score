@@ -1,7 +1,7 @@
 package main
 
 import (
-	poker "github.com/mohitjoshi-hey/go-game-score"
+	poker "github.com/mohitjoshi-hey/texas-holdem-tournament-engine"
 	"log"
 	"net/http"
 )

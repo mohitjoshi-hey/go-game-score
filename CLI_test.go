@@ -1,7 +1,7 @@
 package poker_test
 
 import (
-	poker "github.com/mohitjoshi-hey/go-game-score"
+	poker "github.com/mohitjoshi-hey/texas-holdem-tournament-engine"
 	"strings"
 	"testing"
 )

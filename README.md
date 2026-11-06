@@ -42,7 +42,7 @@ A Go application built iteratively with TDD, exploring HTTP servers, interfaces,
 ## Project Structure
 
 ```text
-go-game-score/
+texas-holdem-tournament-engine/
 ├── cmd/
 │   ├── cli/
 │   │   └── main.go

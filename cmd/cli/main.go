@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	poker "github.com/mohitjoshi-hey/go-game-score"
+	poker "github.com/mohitjoshi-hey/texas-holdem-tournament-engine"
 )
 
 const dbFileName = "db.file.json"
