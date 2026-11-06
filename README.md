@@ -1,4 +1,4 @@
-# go-game-score
+# texas-holdem-tournament-engine
 
 <p align="center">
   <img src="https://img.shields.io/badge/Go-1.26.1-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go version"/>
